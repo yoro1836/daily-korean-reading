@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비문학 독해 학습지</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>비문학 독해 학습지</h1>
+        <div class="button-container">
+            <button id="new-passage">새로운 지문</button>
+            <button id="print-sheet">인쇄하기</button>
+        </div>
+        
+        <!-- 학생 정보 양식 -->
+        <div class="student-info">
+            <div class="info-item">
+                <label for="class">반:</label>
+                <input type="text" id="class" name="class">
+            </div>
+            <div class="info-item">
+                <label for="number">번호:</label>
+                <input type="text" id="number" name="number">
+            </div>
+            <div class="info-item">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="info-item">
+                <label for="date">날짜:</label>
+                <input type="text" id="date" name="date">
+            </div>
+        </div>
+        
+        <!-- 문제 페이지 -->
+        <div class="problem-page">
+            <div class="passage-container">
+                <h3>지문</h3>
+                <div id="passage-text" class="passage-text"></div>
+            </div>
+            
+            <div class="questions-container">
+                <h3>문제</h3>
+                <div id="questions" class="questions">
+                    <!-- 문제들이 여기에 동적으로 생성됩니다 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
