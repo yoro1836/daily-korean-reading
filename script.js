@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify({
                     contents: [{
+                        role: "user",
                         parts: [{
                             text: `다음 요구사항에 맞는 비문학 지문과 문제를 생성해주세요:
                             1. 초등학생 수준의 교과서에 나올 수 있는 비문학 지문을 작성해주세요.
