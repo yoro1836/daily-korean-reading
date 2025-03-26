@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const passageText = document.getElementById('passage-text');
     const questionsContainer = document.getElementById('questions');
     
-    // API 키는 localStorage에서만 관리
+    // API 키 설정
     let GEMINI_API_KEY = localStorage.getItem('gemini_api_key') || '';
+    
+    // 날짜 입력란에 오늘 날짜를 자동으로 입력합니다
+    document.getElementById('date').value = new Date().toLocaleDateString('ko-KR');
     
     // API 키 설정 UI 추가
     const apiKeyContainer = document.createElement('div');
@@ -12,73 +15,20 @@ document.addEventListener('DOMContentLoaded', function() {
     apiKeyContainer.innerHTML = `
         <div class="info-item">
             <label for="api-key">Gemini API Key:</label>
-            <input type="password" id="api-key" value="${GEMINI_API_KEY}" placeholder="API 키를 입력하세요">
+            <input type="password" id="api-key" value="${GEMINI_API_KEY}">
             <button id="save-api-key">저장</button>
-            <button id="toggle-api-key" style="padding: 8px; background: none; border: none; cursor: pointer;">👁️</button>
         </div>
-        <div id="api-key-status" style="font-size: 12px; margin-top: 5px;"></div>
     `;
     document.querySelector('.button-container').appendChild(apiKeyContainer);
     
-    // API 키 표시/숨김 토글
-    document.getElementById('toggle-api-key').addEventListener('click', function() {
-        const apiKeyInput = document.getElementById('api-key');
-        if (apiKeyInput.type === 'password') {
-            apiKeyInput.type = 'text';
-            this.textContent = '🔒';
-        } else {
-            apiKeyInput.type = 'password';
-            this.textContent = '👁️';
-        }
-    });
-    
-    // API 키 저장 및 검증
-    document.getElementById('save-api-key').addEventListener('click', async function() {
-        const apiKey = document.getElementById('api-key').value.trim();
-        const statusDiv = document.getElementById('api-key-status');
-        
-        if (!apiKey) {
-            statusDiv.textContent = '❌ API 키를 입력해주세요.';
-            statusDiv.style.color = '#ff4444';
-            return;
-        }
-
-        // API 키 유효성 검사
-        try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: "테스트"
-                        }]
-                    }]
-                })
-            });
-
-            const data = await response.json();
-            if (data.error) {
-                throw new Error(data.error.message);
-            }
-
-            // API 키가 유효한 경우
-            GEMINI_API_KEY = apiKey;
-            localStorage.setItem('gemini_api_key', apiKey);
-            statusDiv.textContent = '✅ API 키가 저장되었습니다.';
-            statusDiv.style.color = '#4CAF50';
-        } catch (error) {
-            statusDiv.textContent = '❌ 유효하지 않은 API 키입니다.';
-            statusDiv.style.color = '#ff4444';
-            console.error('API Key validation error:', error);
-        }
+    // API 키 저장 버튼 이벤트
+    document.getElementById('save-api-key').addEventListener('click', function() {
+        const apiKey = document.getElementById('api-key').value;
+        GEMINI_API_KEY = apiKey;
+        localStorage.setItem('gemini_api_key', apiKey);
+        alert('API 키가 저장되었습니다.');
     });
 
-    // 날짜 입력란에 오늘 날짜를 자동으로 입력합니다
-    document.getElementById('date').value = new Date().toLocaleDateString('ko-KR');
-    
     // Gemini API를 사용하여 지문과 문제를 생성하는 함수
     async function generatePassageWithGemini() {
         if (!GEMINI_API_KEY) {
