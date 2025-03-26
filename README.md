@@ -4,7 +4,7 @@
 
 ## 웹사이트
 
-[AI 비문학 독해 학습지 생성기 바로가기](https://your-username.github.io/your-repo)
+[AI 비문학 독해 학습지 생성기 바로가기](https://jkf87.github.io/daily-korean-reading)
 
 ## 기능
 
@@ -19,7 +19,7 @@
 
 ## 사용 방법
 
-1. [웹사이트](https://your-username.github.io/your-repo)에 접속합니다.
+1. [웹사이트](https://jkf87.github.io/daily-korean-reading)에 접속합니다.
 2. [Google AI Studio](https://makersuite.google.com/app/apikey)에서 API 키를 발급받습니다.
 3. 발급받은 API 키를 입력합니다.
 4. "새로운 지문" 버튼을 클릭하여 학습지를 생성합니다.
@@ -39,11 +39,11 @@
 
 1. 저장소를 클론합니다
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/jkf87/daily-korean-reading.git
 ```
 2. 클론한 디렉토리로 이동합니다
 ```bash
-cd your-repo
+cd daily-korean-reading
 ```
 3. `index.html` 파일을 웹 브라우저에서 엽니다
 
